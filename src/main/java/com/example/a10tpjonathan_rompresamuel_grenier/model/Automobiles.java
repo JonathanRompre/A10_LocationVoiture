@@ -3,7 +3,7 @@ package com.example.a10tpjonathan_rompresamuel_grenier.model;
 import javax.persistence.*;
 
 @Entity
-public class Voiture {
+public class Automobiles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -18,10 +18,10 @@ public class Voiture {
     @JoinColumn(name = "client_id_FK")
     private Client client;
 
-    public Voiture() {
+    public Automobiles() {
     }
 
-    public Voiture(Integer annee, String model, String motopropulsion, String transmission, String licence, double prix) {
+    public Automobiles(Integer annee, String model, String motopropulsion, String transmission, String licence, double prix) {
         this.annee = annee;
         this.model = model;
         this.motopropulsion = motopropulsion;
