@@ -13,11 +13,11 @@ public class Client {
     private String email;
 
     @OneToMany(mappedBy = "client")
-    private List<Automobiles>  automobiles;
+    private List<Automobile> automobiles;
     @OneToMany(mappedBy = "client")
-    private List<Reservation>  reservations;
+    private List<Reservation> reservations;
     @OneToMany(mappedBy = "client")
-    private List<HistoriqueReservation>  historiqueReservations;
+    private List<HistoriqueReservation> historiqueReservations;
 
     public Client() {
     }
