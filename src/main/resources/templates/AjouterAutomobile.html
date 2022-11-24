@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>AjouterAutomobile</title>
+    <link crossorigin="anonymous"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          rel="stylesheet">
+</head>
+<body>
+<div align="center" class="container">
+    <h1>Système d'ajout d'automobiles</h1>
+    <hr>
+    <h2>Ajouter une automobile </h2>
+
+    <form action="#" method="POST" th:action="@{sauvegarderAutomobile}"
+          th:object="${automobile}">
+        <input class="form-control mb-4 col-4" placeholder="Année" th:field="*{annee}" type="text">
+        <input class="form-control mb-4 col-4" placeholder="Marque" th:field="*{marque}" type="text">
+        <input class="form-control mb-4 col-4" placeholder="Modèle" th:field="*{model}" type="text">
+        <input class="form-control mb-4 col-4" placeholder="Motopropulsion" th:field="*{motopropulsion}" type="text">
+        <input class="form-control mb-4 col-4" placeholder="Transmission" th:field="*{transmission}" type="text">
+        <input class="form-control mb-4 col-4" placeholder="Licence" th:field="*{licence}" type="text">
+        <input class="form-control mb-4 col-4" placeholder="Prix" th:field="*{prix}" type="text">
+
+
+        <button class="btn btn-info col-2" type="submit">Sauvegarder</button>
+    </form>
+
+    <hr>
+
+    <a th:href="@{/}"> Retour Acceuil</a>
+</div>
+</body>
+</html>

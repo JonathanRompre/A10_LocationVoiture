@@ -3,11 +3,12 @@ package com.example.a10tpjonathan_rompresamuel_grenier.model;
 import javax.persistence.*;
 
 @Entity
-public class Automobiles {
+public class Automobile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer annee;
+    private String marque;
     private String model;
     private String motopropulsion;
     private String transmission;
@@ -18,16 +19,33 @@ public class Automobiles {
     @JoinColumn(name = "client_id_FK")
     private Client client;
 
-    public Automobiles() {
+    public Automobile() {
     }
 
-    public Automobiles(Integer annee, String model, String motopropulsion, String transmission, String licence, double prix) {
+    public Automobile(Integer annee, String marque, String model, String motopropulsion, String transmission, String licence, double prix) {
         this.annee = annee;
+        this.marque = marque;
         this.model = model;
         this.motopropulsion = motopropulsion;
         this.transmission = transmission;
         this.licence = licence;
         this.prix = prix;
+    }
+
+    public String getMarque() {
+        return marque;
+    }
+
+    public void setMarque(String marque) {
+        this.marque = marque;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public Integer getId() {
@@ -88,7 +106,16 @@ public class Automobiles {
 
     @Override
     public String toString() {
-        return "Client{" + "id=" + id + ", annee=" + annee + ", model='" + model + '\'' + ", motopropulsion='" + motopropulsion + '\'' + ", transmission='" + transmission + '\'' + ", licence='" + licence + '\'' + ", prix=" + prix + '}';
+        return "Automobile{" +
+                "id=" + id +
+                ", annee=" + annee +
+                ", marque='" + marque + '\'' +
+                ", model='" + model + '\'' +
+                ", motopropulsion='" + motopropulsion + '\'' +
+                ", transmission='" + transmission + '\'' +
+                ", licence='" + licence + '\'' +
+                ", prix=" + prix +
+                ", client=" + client +
+                '}';
     }
-
 }
