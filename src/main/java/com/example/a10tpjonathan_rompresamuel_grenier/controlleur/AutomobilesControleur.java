@@ -42,7 +42,7 @@ public class AutomobilesControleur implements ErrorController {
         return "redirect:/automobile/";
     }
 
-    @GetMapping("/DetailsAutomobile/{id}")
+    @GetMapping("/detailsAutomobile/{id}")
     public String updateAutomobile(@PathVariable(value = "id") int id, Model model) {
         Automobile automobile = automobilesServices.trouverAutomobile(id);
         model.addAttribute("automobile", automobile);
