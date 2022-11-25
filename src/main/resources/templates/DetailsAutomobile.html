@@ -15,7 +15,7 @@
 <div align="center" class="container">
     <h1>Details sur l'automobile</h1>
 
-    <form action="#" method="POST" th:action="@{/sauvegarderAutomobile}" th:object="${automobile}">
+    <form action="#" method="POST" th:action="@{/automobile/sauvegarderAutomobile}" th:object="${automobile}">
 
         <!-- Add hidden form field to handle update -->
         <input th:field="*{id}" type="hidden"/>
@@ -34,9 +34,9 @@
         </button>
         <a class="btn btn-danger col-2" onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"
            th:data-confirm-delete="|Voulez-vous supprimer cette automobile|"
-           th:href="@{/supprimerAutomobile/{id}(id=${automobile.id})}">Supprimer</a>
+           th:href="@{/automobile/supprimerAutomobile/{id}(id=${automobile.id})}">Supprimer</a>
     </form>
-    <a th:href="@{/}"> Retour Acceuil</a>
+    <a th:href="@{/automobile/}"> Retour Acceuil</a>
 </div>
 
 </body>

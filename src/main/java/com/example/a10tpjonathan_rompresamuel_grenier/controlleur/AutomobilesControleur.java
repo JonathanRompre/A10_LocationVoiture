@@ -6,14 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/automobile")
 public class AutomobilesControleur implements ErrorController {
     @Autowired
     private AutomobilesServices automobilesServices;
@@ -41,7 +39,7 @@ public class AutomobilesControleur implements ErrorController {
     @PostMapping("/sauvegarderAutomobile")
     public String sauvegarderAutomobile(@ModelAttribute("automobile") Automobile automobile) {
         automobilesServices.ajouterAutomobile(automobile);
-        return "redirect:/";
+        return "redirect:/automobile/";
     }
 
     @GetMapping("/DetailsAutomobile/{id}")
@@ -54,7 +52,7 @@ public class AutomobilesControleur implements ErrorController {
     @GetMapping("/supprimerAutomobile/{id}")
     public String supprimerAvecId(@PathVariable(value = "id") int id) {
         automobilesServices.supprimerAutomobiles(id);
-        return "redirect:/";
+        return "redirect:/automobile/";
 
     }
 

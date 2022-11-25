@@ -11,7 +11,7 @@
 <body>
 <div align="center">
     <h1>Liste des voitures</h1>
-    <a class="btn btn-primary btn-sm mb-3" th:href="@{/ajouterAutomobile}">Ajouter une voiture</a>
+    <a class="btn btn-primary btn-sm mb-3" th:href="@{/automobile/ajouterAutomobile}">Ajouter une voiture</a>
     <table align="center" border="1" class="table table-striped table-responsive-md"
            style="width:80%">
         <thread >
@@ -40,7 +40,7 @@
             <td th:text="${automobile.getLicence()}"></td>
             <td th:text="${automobile.getPrix()}"></td>
             <td align="center">
-                <a class="btn btn-primary" th:href="@{/DetailsAutomobile/{id}(id=${automobile.id})}">Details</a>
+                <a class="btn btn-primary" th:href="@{/automobile/DetailsAutomobile/{id}(id=${automobile.id})}">Details</a>
                 <a class="btn btn-primary">Louer</a>
                 <a class="btn btn-primary">Retourner</a>
             </td>
