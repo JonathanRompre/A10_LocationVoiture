@@ -25,8 +25,6 @@ public class AutomobilesConfig {
             Automobile automobile9 = new Automobile(2022, "Hyundai", "Tucson", "AWD", "Automatique", "F345C87", 597.65);
             Automobile automobile10 = new Automobile(2022, "Dodge", "Durango", "4X4", "Automatique", "F093H76", 717.58);
 
-
-
             automobilesRepository.saveAll(List.of(automobile1, automobile2, automobile3, automobile4, automobile5, automobile6, automobile7, automobile8, automobile9, automobile10));
 
         };

@@ -14,7 +14,7 @@
     <hr>
     <h2>Ajouter une automobile </h2>
 
-    <form action="#" method="POST" th:action="@{sauvegarderAutomobile}"
+    <form action="#" method="POST" th:action="@{/automobile/sauvegarderAutomobile}"
           th:object="${automobile}">
         <input class="form-control mb-4 col-4" placeholder="Année" th:field="*{annee}" type="text">
         <input class="form-control mb-4 col-4" placeholder="Marque" th:field="*{marque}" type="text">
@@ -30,7 +30,7 @@
 
     <hr>
 
-    <a th:href="@{/}"> Retour Acceuil</a>
+    <a th:href="/automobile"> Retour Acceuil</a>
 </div>
 </body>
 </html>
