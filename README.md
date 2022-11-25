@@ -1,8 +1,11 @@
 # A10-TP-Sam_Jo
+
 Tp session A10
 
 ## Tables
+
 ### Automobile
+
 - id
 - annee
 - model
@@ -10,14 +13,17 @@ Tp session A10
 - "transmission"
 - license
 - prix
+  id;
 
 ### Client
+
 - id
 - nom
 - prenom
 - email
 
 ### Reservation
+
 - id
 - user_id
 - automobile_id
@@ -25,6 +31,7 @@ Tp session A10
 - date_sortie
 
 ### Historique_reservation
+
 - id
 - user_id
 - automobile_id
