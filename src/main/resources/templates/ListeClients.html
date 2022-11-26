@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste Clients</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          rel="stylesheet">
+</head>
+<body>
+<h1>Liste des clients</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Client id</th>
+            <th>prenom</th>
+            <th>nom</th>
+            <th>email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="client: ${listClients}">
+            <td th:text="${client.getId()}"></td>
+            <td th:text="${client.getPrenom()}"></td>
+            <td th:text="${client.getNom()}"></td>
+            <td th:text="${client.getEmail()}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/client/details/{id}(id=${client.id})}">Details</a>
+                <a class="btn btn-primary" >Choisir</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
