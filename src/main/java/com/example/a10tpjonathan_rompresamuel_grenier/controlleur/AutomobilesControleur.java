@@ -53,7 +53,6 @@ public class AutomobilesControleur implements ErrorController {
     public String supprimerAvecId(@PathVariable(value = "id") int id) {
         automobilesServices.supprimerAutomobiles(id);
         return "redirect:/automobile/";
-
     }
 
 }

@@ -28,7 +28,7 @@
             <td th:text="${client.getEmail()}"></td>
             <td>
                 <a class="btn btn-primary" th:href="@{/client/details/{id}(id=${client.id})}">Details</a>
-                <a class="btn btn-primary" >Choisir</a>
+                <a class="btn btn-primary" th:href="@{'/reservation?autoId='+${autoId}+'&clientId='+${client.id}}">Choisir</a>
             </td>
         </tr>
     </tbody>
