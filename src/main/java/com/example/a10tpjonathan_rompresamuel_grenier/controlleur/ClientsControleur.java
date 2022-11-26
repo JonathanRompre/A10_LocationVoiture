@@ -40,4 +40,11 @@ public class ClientsControleur {
         clientsServices.ajouterClient(client);
         return "redirect:/client";
     }
+
+    @GetMapping("/ajouter")
+    public String ajouterNouveauClient(Model model){
+        Client client = new Client();
+        model.addAttribute("client", client);
+        return "AjouterClient";
+    }
 }
