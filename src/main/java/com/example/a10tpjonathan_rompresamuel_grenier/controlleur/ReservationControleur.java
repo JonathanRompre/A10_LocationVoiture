@@ -49,10 +49,10 @@ public class ReservationControleur {
     }
 
     @GetMapping("/confirm")
-    public String confirmationReservation(@RequestParam(required = false) Integer autoId, @RequestParam(required = false) Integer clientId, Model model){
+    public String confirmationReservation(@RequestParam Integer autoId, @RequestParam(required = false) Integer clientId, Model model){
         Reservation reservation = new Reservation();
-        reservation.setUser_id(clientId);
-        reservation.setAutomobile_id(clientId);
+        reservation.setClient(clientsServices.trouverClient(clientId));
+        reservation.setAutomobile_id(autoId);
         reservation.setDate_reservation(new Date());
         reservation.setDate_sortie((new Date()));
         reservationsServices.ajouterReservation(reservation);

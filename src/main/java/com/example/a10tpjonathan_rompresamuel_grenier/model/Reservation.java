@@ -36,14 +36,6 @@ public class Reservation {
         this.id = id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
-    }
-
     public Integer getAutomobile_id() {
         return automobile_id;
     }
@@ -66,6 +58,14 @@ public class Reservation {
 
     public void setDate_sortie(Date date_sortie) {
         this.date_sortie = date_sortie;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override
