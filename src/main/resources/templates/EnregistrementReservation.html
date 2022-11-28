@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enregistrement d'une réservation</title>
+</head>
+<body>
+    <h1>Nouvelle réservation</h1>
+    <!-- Afficher client pour location -->
+    <div>
+        <h2>Informations du client</h2>
+        <div>
+            Prénom: <span th:text="${client.prenom}"></span><br>
+            Nom: <span th:text="${client.nom}"></span><br>
+            Courriel: <span th:text="${client.email}"></span>
+        </div>
+    </div>
+    <!-- Afficher automobile pour location -->
+    <div>
+        <h2>Information de l'automobile</h2>
+        <div>
+            Id: <span th:text="${auto.id}"></span><br>
+            Année: <span th:text="${auto.annee}"></span><br>
+            Marque: <span th:text="${auto.marque}"></span><br>
+            Modèle: <span th:text="${auto.model}"></span><br>
+            License: <span th:text="${auto.licence}"></span><br>
+            Prix/mois: <span th:text="${auto.prix}"></span>
+        </div>
+    </div>
+    <!-- Confirmation -->
+    <a class="btn btn-info col-2" onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"
+            th:data-confirm-delete="|Veuillez confirmer la réservation|"
+            th:href="@{'/reservation/confirm?autoId='+${auto.id}+'&clientId='+${client.id}}"> Confirmer
+    </a>
+</body>
+</html>

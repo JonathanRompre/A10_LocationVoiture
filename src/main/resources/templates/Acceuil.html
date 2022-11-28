@@ -50,7 +50,7 @@
             <td th:text="${automobile.getPrix()}"></td>
             <td align="center">
                 <a class="btn btn-primary" th:href="@{/automobile/detailsAutomobile/{id}(id=${automobile.id})}">Details</a>
-                <a class="btn btn-primary">Louer</a>
+                <a class="btn btn-primary" th:href="@{'/client/?autoId='+${automobile.id}}">Louer</a>
                 <a class="btn btn-primary">Retourner</a>
             </td>
         </tr>

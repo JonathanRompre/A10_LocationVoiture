@@ -9,7 +9,8 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer user_id;
-    private Integer automobile_id;
+    @Column(name = "automobile_id")
+    private Integer automobileId;
     private Date date_reservation;
     private Date date_sortie;
 
@@ -20,9 +21,9 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(Integer user_id, Integer automobile_id, Date date_reservation, Date date_sortie) {
+    public Reservation(Integer user_id, Integer automobileId, Date date_reservation, Date date_sortie) {
         this.user_id = user_id;
-        this.automobile_id = automobile_id;
+        this.automobileId = automobileId;
         this.date_reservation = date_reservation;
         this.date_sortie = date_sortie;
 
@@ -36,20 +37,12 @@ public class Reservation {
         this.id = id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getAutomobileId() {
+        return automobileId;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
-    }
-
-    public Integer getAutomobile_id() {
-        return automobile_id;
-    }
-
-    public void setAutomobile_id(Integer automobile_id) {
-        this.automobile_id = automobile_id;
+    public void setAutomobileId(Integer automobile_id) {
+        this.automobileId = automobile_id;
     }
 
     public Date getDate_reservation() {
@@ -68,12 +61,20 @@ public class Reservation {
         this.date_sortie = date_sortie;
     }
 
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
     @Override
     public String toString() {
         return "Reservation{" +
                 "id=" + id +
                 ", user_id=" + user_id +
-                ", automobile_id=" + automobile_id +
+                ", automobile_id=" + automobileId +
                 ", date_reservation=" + date_reservation +
                 ", date_sortie=" + date_sortie +
                 '}';
