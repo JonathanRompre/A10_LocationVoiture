@@ -23,10 +23,19 @@ public class AutomobilesControleur implements ErrorController {
     @GetMapping("/")
     public String affichageAcceuil(Model model) {
 
-        List<Automobile> listAutomobiles = automobilesServices.listerAutomobiles();
+        List<Automobile> listAutomobiles = automobilesServices.listerAutomobilesDispo();
         model.addAttribute("automobile", new Automobile());
         model.addAttribute("listAutomobiles", listAutomobiles);
         return "Acceuil";
+    }
+
+    @GetMapping("/louees")
+    public String affichageAccueilLouees(Model model){
+        List<Automobile> listAutomobiles = automobilesServices.listerAutomobilesLouees();
+        model.addAttribute("automobile", new Automobile());
+        model.addAttribute("listAutomobiles", listAutomobiles);
+        return "VoituresLouees";
+
     }
 
     @GetMapping("/ajouterAutomobile")

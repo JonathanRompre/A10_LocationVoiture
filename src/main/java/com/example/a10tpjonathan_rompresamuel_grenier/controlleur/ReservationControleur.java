@@ -52,7 +52,7 @@ public class ReservationControleur {
     public String confirmationReservation(@RequestParam Integer autoId, @RequestParam(required = false) Integer clientId, Model model){
         Reservation reservation = new Reservation();
         reservation.setClient(clientsServices.trouverClient(clientId));
-        reservation.setAutomobile_id(autoId);
+        reservation.setAutomobileId(autoId);
         reservation.setDate_reservation(new Date());
         reservation.setDate_sortie((new Date()));
         reservationsServices.ajouterReservation(reservation);
