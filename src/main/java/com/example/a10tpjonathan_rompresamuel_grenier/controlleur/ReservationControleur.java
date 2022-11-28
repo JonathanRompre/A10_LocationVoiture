@@ -54,14 +54,7 @@ public class ReservationControleur {
     }
 
     @PostMapping("/confirm")
-    //public String confirmationReservation(@RequestParam Integer autoId, @RequestParam(required = false) Integer clientId, Model model){
     public String confirmationReservation(@ModelAttribute("reservation") Reservation reservation){
-//        Reservation reservation = new Reservation();
-//        reservation.setClient(clientsServices.trouverClient(clientId));
-//        reservation.setAutomobileId(autoId);
-//        reservation.setDateReservation(new Date());
-//        reservation.setDateSortie((new Date()));
-        System.out.println(reservation);
         reservationsServices.ajouterReservation(reservation);
         return "redirect:/";
     }
