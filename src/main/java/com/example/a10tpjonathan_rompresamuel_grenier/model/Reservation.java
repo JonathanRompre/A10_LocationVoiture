@@ -1,5 +1,7 @@
 package com.example.a10tpjonathan_rompresamuel_grenier.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -12,6 +14,7 @@ public class Reservation {
     private Integer automobileId;
     @Column(name = "date_reservation")
     private Date dateReservation;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date_sortie")
     private Date dateSortie;
 
