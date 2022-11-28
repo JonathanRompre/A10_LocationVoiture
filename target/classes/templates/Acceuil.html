@@ -2,6 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="fr">
 <head>
+    <script type="text/javascript">
+        function clearSearch() {
+            window.location = "[[@{/automobile/trier}]]";
+        }
+    </script>
     <meta charset="UTF-8">
     <title>Acceuil</title>
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -12,7 +17,15 @@
 <div align="center">
     <h1>Liste des voitures</h1>
     <a class="btn btn-primary btn-sm mb-3" th:href="@{/automobile/ajouterAutomobile}">Ajouter une voiture</a>
-    <table align="center" border="1" class="table table-striped table-responsive-md"
+    <form th:action="@{/automobile/trier}">
+        Filter: <input type="text" name="marque" id="marque" size="50" th:value="${marque}" required />
+        &nbsp;
+        <input type="submit" value="Search" />
+        &nbsp;
+        <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+    </form>
+    <br>
+    <table align="center" border="1" class="table table-striped table-responsive-md"0
            style="width:80%">
         <thread >
             <tr align="center">
