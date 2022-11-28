@@ -28,10 +28,42 @@
             Prix/mois: <span th:text="${auto.prix}"></span>
         </div>
     </div>
-    <!-- Confirmation -->
-    <a class="btn btn-info col-2" onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"
-            th:data-confirm-delete="|Veuillez confirmer la réservation|"
-            th:href="@{'/reservation/confirm?autoId='+${auto.id}+'&clientId='+${client.id}}"> Confirmer
-    </a>
+    <!-- Sélection date prise de possession -->
+    <form th:action="@{/reservation/confirm}" method="POST" th:object="${reservation}">
+        <div>
+            <h2>Sélectionner la date de prise de possession du véhicule.</h2>
+            <input type="date" id="datePrisePossession" th:value="${reservation.dateSortie}">
+        </div>
+        <!-- Confirmation -->
+<!--        <a class="btn btn-info col-2" onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"-->
+<!--           th:data-confirm-delete="|Veuillez confirmer la réservation|"-->
+<!--           th:href="@{'/reservation/confirm?autoId='+${auto.id}+'&clientId='+${client.id}+'&datePoss='+${datePossession}}"> Confirmer-->
+<!--        </a>-->
+            <button class="btn btn-info col-2" onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"
+                    th:data-confirm-delete="|Voulez-vous sauvegarder cette réservation|"
+                    type="submit"> Confirmer
+            </button>
+    </form>
+    <a class="btn btn-info col-2" th:href="@{/}" th:text="'Annuler'"></a>
 </body>
+    <script>
+        function setDatePickerMinDate(){
+            let today = new Date();
+            let dd = today.getDate();
+            let mm = today.getMonth() + 1; //January is 0!
+            let yyyy = today.getFullYear();
+
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+
+            today = yyyy + '-' + mm + '-' + dd;
+            document.getElementById("datePrisePossession").setAttribute("min", today)
+        }
+        setDatePickerMinDate()
+    </script>
 </html>

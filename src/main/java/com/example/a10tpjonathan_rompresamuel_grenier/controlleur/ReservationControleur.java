@@ -9,9 +9,7 @@ import com.example.a10tpjonathan_rompresamuel_grenier.service.ReservationsServic
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -44,17 +42,26 @@ public class ReservationControleur {
         }
         model.addAttribute("client",client);
         model.addAttribute("auto",auto);
+        model.addAttribute("datePossession","");
+        Reservation newReservation = new Reservation();
+        newReservation.setClient(client);
+        newReservation.setAutomobileId(auto.getId());
+        newReservation.setDateReservation(new Date());
+        newReservation.setDateSortie(new Date());
+        model.addAttribute("reservation", newReservation);
 
         return "EnregistrementReservation";
     }
 
-    @GetMapping("/confirm")
-    public String confirmationReservation(@RequestParam Integer autoId, @RequestParam(required = false) Integer clientId, Model model){
-        Reservation reservation = new Reservation();
-        reservation.setClient(clientsServices.trouverClient(clientId));
-        reservation.setAutomobileId(autoId);
-        reservation.setDate_reservation(new Date());
-        reservation.setDate_sortie((new Date()));
+    @PostMapping("/confirm")
+    //public String confirmationReservation(@RequestParam Integer autoId, @RequestParam(required = false) Integer clientId, Model model){
+    public String confirmationReservation(@ModelAttribute("reservation") Reservation reservation){
+//        Reservation reservation = new Reservation();
+//        reservation.setClient(clientsServices.trouverClient(clientId));
+//        reservation.setAutomobileId(autoId);
+//        reservation.setDateReservation(new Date());
+//        reservation.setDateSortie((new Date()));
+        System.out.println(reservation);
         reservationsServices.ajouterReservation(reservation);
         return "redirect:/";
     }
