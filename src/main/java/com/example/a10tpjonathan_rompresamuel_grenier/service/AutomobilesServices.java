@@ -32,16 +32,10 @@ public class AutomobilesServices {
             automobilesRepository.deleteById(id);
         }
     }
-
-    public void updateProduct(Integer automobileId, int annee, String model, String motopropulsion, String transmission, String license, double prix) {
-        if (automobilesRepository.existsById(automobileId)) {
-            Automobile automobile = automobilesRepository.findById(automobileId).get();
-            automobile.setAnnee(annee);
-            automobile.setModel(model);
-            automobile.setMotopropulsion(motopropulsion);
-            automobile.setTransmission(transmission);
-            automobile.setLicence(license);
-            automobile.setPrix(prix);
+    public List<Automobile> listAll(String marque) {
+        if (marque != null) {
+            return automobilesRepository.filterMarque(marque);
         }
+        return automobilesRepository.findAll();
     }
-}
+    }

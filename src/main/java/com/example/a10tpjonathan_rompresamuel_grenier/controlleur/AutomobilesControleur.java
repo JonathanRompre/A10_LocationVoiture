@@ -4,6 +4,7 @@ import com.example.a10tpjonathan_rompresamuel_grenier.model.Automobile;
 import com.example.a10tpjonathan_rompresamuel_grenier.service.AutomobilesServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,14 @@ import java.util.List;
 public class AutomobilesControleur implements ErrorController {
     @Autowired
     private AutomobilesServices automobilesServices;
+    @GetMapping("/trier")
+    public String viewHomePage(Model model, @Param("marque") String marque) {
+        List<Automobile> listAutomobiles = automobilesServices.listAll(marque);
+        model.addAttribute("listAutomobiles", listAutomobiles);
+        model.addAttribute("marque", marque);
+
+        return "Acceuil";
+    }
 
     public AutomobilesControleur(AutomobilesServices automobilesServices) {
         this.automobilesServices = automobilesServices;
