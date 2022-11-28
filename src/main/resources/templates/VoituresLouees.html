@@ -36,7 +36,9 @@
       <td th:text="${automobile.getLicence()}"></td>
       <td th:text="${automobile.getPrix()}"></td>
       <td align="center">
-        <a class="btn btn-primary" th:href="@{'/retour?autoId='+${automobile.id}}">Retourner</a>
+        <a class="btn btn-info col-6" onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"
+           th:data-confirm-delete="|Voulez-vous retourner cette voiture|"
+           type="submit"  th:href="@{'/retour?autoId='+${automobile.id}}">Retourner</a>
       </td>
     </tr>
     </tbody>
