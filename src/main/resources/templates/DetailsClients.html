@@ -9,6 +9,7 @@
           rel="stylesheet">
 </head>
 <body>
+<div align="center" class="container">
     <h1>Details du client</h1>
 
     <form action="#" method="POST" th:action="@{/client/sauvegarder}" th:object="${client}">
@@ -18,12 +19,13 @@
         <input class="form-control mb-4 col-4" required th:field="*{nom}" type="text">
         <input class="form-control mb-4 col-4" required th:field="*{email}" type="text">
 
-        <button class="btn btn-info col-2" onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"
+        <button class="btn btn-info col-2"
+                onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"
                 th:data-confirm-delete="|Voulez-vous modifier ce client|"
                 type="submit"> Modifier
         </button>
-
-        <a th:href="@{/client/}">Retour Liste Clients</a>
     </form>
+    <a th:href="@{/client/}">Retour Liste Clients</a>
+</div>
 </body>
 </html>

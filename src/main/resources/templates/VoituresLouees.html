@@ -36,7 +36,6 @@
       <td th:text="${automobile.getLicence()}"></td>
       <td th:text="${automobile.getPrix()}"></td>
       <td align="center">
-        <a class="btn btn-primary" th:href="@{/automobile/detailsAutomobile/{id}(id=${automobile.id})}">Details</a>
         <a class="btn btn-primary" th:href="@{'/retour?autoId='+${automobile.id}}">Retourner</a>
       </td>
     </tr>

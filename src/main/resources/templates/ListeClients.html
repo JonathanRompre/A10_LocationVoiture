@@ -9,9 +9,11 @@
           rel="stylesheet">
 </head>
 <body>
+<div align="center">
 <h1>Choisir le client pour la réservation</h1>
 <a class="btn btn-primary btn-sm mb-3" th:href="@{/client/ajouter}">Ajouter un client</a>
-<table>
+<table align="center" border="1" class="table table-striped table-responsive-md"
+       style="width:80%">
     <thead>
         <tr>
             <th>Client id</th>
@@ -33,6 +35,7 @@
         </tr>
     </tbody>
 </table>
-
+    <a th:href="@{/automobile/}"> Retour Acceuil</a>
+</div>
 </body>
 </html>
