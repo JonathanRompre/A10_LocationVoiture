@@ -9,5 +9,4 @@ public class A10TpJonathanRompreSamuelGrenierApplication {
     public static void main(String[] args) {
         SpringApplication.run(A10TpJonathanRompreSamuelGrenierApplication.class, args);
     }
-
 }
