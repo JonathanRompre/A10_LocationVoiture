@@ -13,11 +13,11 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/automobile")
-public class AutomobilesControleur implements ErrorController {
+public class AutomobilesControleur {
     @Autowired
     private AutomobilesServices automobilesServices;
     @GetMapping("/trier")
-    public String viewHomePage(Model model, @Param("marque") String marque) {
+    public String filtrerPageAcceuilParMarque(Model model, @Param("marque") String marque) {
         List<Automobile> listAutomobiles = automobilesServices.listAll(marque);
         model.addAttribute("listAutomobiles", listAutomobiles);
         model.addAttribute("marque", marque);

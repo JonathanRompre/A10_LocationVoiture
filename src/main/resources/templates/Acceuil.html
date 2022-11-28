@@ -18,22 +18,20 @@
     <h1>Liste des voitures</h1>
     <a class="btn btn-primary btn-sm mb-3" th:href="@{/automobile/ajouterAutomobile}">Ajouter une voiture</a>
     <form th:action="@{/automobile/trier}">
-        Filter: <input type="text" name="marque" id="marque" size="50" th:value="${marque}" required />
+        Filter par marque: <input type="text" name="marque" id="marque" size="50" th:value="${marque}" required />
         &nbsp;
-        <input type="submit" value="Search" />
+        <input type="submit" value="Recherché" />
         &nbsp;
-        <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+        <input type="button" value="Effacer" id="btnClear" onclick="clearSearch()" />
     </form>
     <br>
     <table align="center" border="1" class="table table-striped table-responsive-md"0
            style="width:80%">
         <thread >
             <tr align="center">
-                <th>Automobile ID</th>
                 <th>Année</th>
                 <th>Marque</th>
                 <th>Modéle</th>
-                <th>Est loué</th>
                 <th>Motopropulsion</th>
                 <th>Transmission</th>
                 <th>License</th>
@@ -43,11 +41,9 @@
         </thread>
         <tbody>
         <tr th:each="automobile : ${listAutomobiles}">
-            <td th:text="${automobile.getId()}"></td>
             <td th:text="${automobile.getAnnee()}"></td>
             <td th:text="${automobile.getMarque()}"></td>
             <td th:text="${automobile.getModel()}"></td>
-            <td>TO DO, est loué</td>
             <td th:text="${automobile.getMotopropulsion()}"></td>
             <td th:text="${automobile.getTransmission()}"></td>
             <td th:text="${automobile.getLicence()}"></td>
