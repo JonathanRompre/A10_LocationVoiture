@@ -23,8 +23,8 @@ public class HistoriqueReservationsServices {
         HistoriqueReservation historiqueReservation = new HistoriqueReservation();
         historiqueReservation.setAutomobile_id(reservation.getAutomobileId());
         historiqueReservation.setClient(reservation.getClient());
-        historiqueReservation.setDate_sortie(reservation.getDate_sortie());
-        historiqueReservation.setDate_reservation(reservation.getDate_reservation());
+        historiqueReservation.setDate_sortie(reservation.getDateSortie());
+        historiqueReservation.setDate_reservation(reservation.getDateReservation());
         historiqueReservation.setDate_retour(new Date());
         reservationRepository.delete(reservation);
         historiqueReservationsRepository.save(historiqueReservation);

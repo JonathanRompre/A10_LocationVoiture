@@ -1,5 +1,7 @@
 package com.example.a10tpjonathan_rompresamuel_grenier.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -8,11 +10,13 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer user_id;
     @Column(name = "automobile_id")
     private Integer automobileId;
-    private Date date_reservation;
-    private Date date_sortie;
+    @Column(name = "date_reservation")
+    private Date dateReservation;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "date_sortie")
+    private Date dateSortie;
 
     @ManyToOne
     @JoinColumn(name = "client_id_FK")
@@ -21,11 +25,10 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(Integer user_id, Integer automobileId, Date date_reservation, Date date_sortie) {
-        this.user_id = user_id;
+    public Reservation(Integer automobileId, Date dateReservation, Date dateSortie) {
         this.automobileId = automobileId;
-        this.date_reservation = date_reservation;
-        this.date_sortie = date_sortie;
+        this.dateReservation = dateReservation;
+        this.dateSortie = dateSortie;
 
     }
 
@@ -45,20 +48,20 @@ public class Reservation {
         this.automobileId = automobile_id;
     }
 
-    public Date getDate_reservation() {
-        return date_reservation;
+    public Date getDateReservation() {
+        return dateReservation;
     }
 
-    public void setDate_reservation(Date date_reservation) {
-        this.date_reservation = date_reservation;
+    public void setDateReservation(Date date_reservation) {
+        this.dateReservation = date_reservation;
     }
 
-    public Date getDate_sortie() {
-        return date_sortie;
+    public Date getDateSortie() {
+        return dateSortie;
     }
 
-    public void setDate_sortie(Date date_sortie) {
-        this.date_sortie = date_sortie;
+    public void setDateSortie(Date date_sortie) {
+        this.dateSortie = date_sortie;
     }
 
     public Client getClient() {
@@ -73,10 +76,9 @@ public class Reservation {
     public String toString() {
         return "Reservation{" +
                 "id=" + id +
-                ", user_id=" + user_id +
                 ", automobile_id=" + automobileId +
-                ", date_reservation=" + date_reservation +
-                ", date_sortie=" + date_sortie +
+                ", date_reservation=" + dateReservation +
+                ", date_sortie=" + dateSortie +
                 '}';
     }
 }
