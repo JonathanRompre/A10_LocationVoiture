@@ -8,7 +8,6 @@ public class HistoriqueReservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer user_id;
     private Integer automobile_id;
     private Date date_reservation;
     private Date date_sortie;
@@ -21,8 +20,7 @@ public class HistoriqueReservation {
     public HistoriqueReservation() {
     }
 
-    public HistoriqueReservation(Integer user_id, Integer automobile_id, Date date_reservation, Date date_sortie, Date date_retour, Client client) {
-        this.user_id = user_id;
+    public HistoriqueReservation(Integer automobile_id, Date date_reservation, Date date_sortie, Date date_retour, Client client) {
         this.automobile_id = automobile_id;
         this.date_reservation = date_reservation;
         this.date_sortie = date_sortie;
@@ -36,14 +34,6 @@ public class HistoriqueReservation {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
     }
 
     public Integer getAutomobile_id() {
@@ -90,7 +80,6 @@ public class HistoriqueReservation {
     public String toString() {
         return "HistoriqueReservation{" +
                 "id=" + id +
-                ", user_id=" + user_id +
                 ", automobile_id=" + automobile_id +
                 ", date_reservation=" + date_reservation +
                 ", date_sortie=" + date_sortie +
