@@ -8,7 +8,5 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface AutomobilesRepository extends JpaRepository<Automobile, Integer> {
-    @Query("SELECT p FROM Automobile p WHERE p.marque LIKE %?1%"
-            )
-    public List<Automobile> filterMarque(String marque);
+
 }
