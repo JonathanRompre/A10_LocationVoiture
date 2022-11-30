@@ -19,7 +19,7 @@ public class HistoriqueReservationsServices {
     @Autowired
     private ReservationRepository reservationRepository;
 
-    public void ajouterHistoriqueReservation(Reservation reservation){
+    public void ajouterHistoriqueReservation(Reservation reservation) {
         HistoriqueReservation historiqueReservation = new HistoriqueReservation();
         historiqueReservation.setAutomobile_id(reservation.getAutomobileId());
         historiqueReservation.setClient(reservation.getClient());

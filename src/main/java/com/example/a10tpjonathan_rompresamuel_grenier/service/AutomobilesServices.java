@@ -6,13 +6,10 @@ import com.example.a10tpjonathan_rompresamuel_grenier.model.Reservation;
 import com.example.a10tpjonathan_rompresamuel_grenier.repository.AutomobilesRepository;
 import com.example.a10tpjonathan_rompresamuel_grenier.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +23,6 @@ public class AutomobilesServices {
     private ReservationRepository reservationRepository;
     @PersistenceContext
     private EntityManager entityManager;
-
-    public List<Automobile> listerAutomobiles() {
-        return automobilesRepository.findAll();
-    }
 
     public List<Automobile> listerAutomobilesDispo() {
         List<Automobile> listAuto = automobilesRepository.findAll();

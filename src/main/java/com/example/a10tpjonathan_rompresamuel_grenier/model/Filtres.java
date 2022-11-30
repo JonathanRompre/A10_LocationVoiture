@@ -12,6 +12,7 @@ public class Filtres {
     String selectionTransmission = "";
 
     Integer selectionPrixMax = null;
+
     public Filtres() {
     }
 
@@ -71,7 +72,7 @@ public class Filtres {
         this.selectionPrixMax = selectionPrixMin;
     }
 
-    public boolean isFilterUsed(){
+    public boolean isFilterUsed() {
         return !this.getSelectionMarque().isBlank()
                 || !this.getSelectionMotopropulsion().isBlank()
                 || !this.getSelectionTransmission().isBlank()

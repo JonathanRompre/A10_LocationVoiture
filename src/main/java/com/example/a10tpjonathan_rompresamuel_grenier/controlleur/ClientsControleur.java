@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
-import java.awt.*;
 import java.util.List;
 
 @Controller
@@ -18,22 +16,22 @@ public class ClientsControleur {
     @Autowired
     private ClientsServices clientsServices;
 
-    public ClientsControleur(ClientsServices clientsServices){
+    public ClientsControleur(ClientsServices clientsServices) {
         this.clientsServices = clientsServices;
     }
 
     @GetMapping
-    public String affichageClients(@RequestParam(required = false) Integer autoId, Model model){
+    public String affichageClients(@RequestParam(required = false) Integer autoId, Model model) {
 
         List<Client> listClient = clientsServices.listerClients();
         model.addAttribute("autoId", autoId);
-        model.addAttribute("client",new Client());
-        model.addAttribute("listClients",listClient);
+        model.addAttribute("client", new Client());
+        model.addAttribute("listClients", listClient);
         return "ListeClients";
     }
 
     @GetMapping("/details/{id}")
-    public String updateClient(@PathVariable(value="id") int id, Model model){
+    public String updateClient(@PathVariable(value = "id") int id, Model model) {
         Client client = clientsServices.trouverClient(id);
         model.addAttribute("client", client);
         return "DetailsClients";
@@ -46,7 +44,7 @@ public class ClientsControleur {
     }
 
     @GetMapping("/ajouter")
-    public String ajouterNouveauClient(Model model){
+    public String ajouterNouveauClient(Model model) {
         Client client = new Client();
         model.addAttribute("client", client);
         return "AjouterClient";

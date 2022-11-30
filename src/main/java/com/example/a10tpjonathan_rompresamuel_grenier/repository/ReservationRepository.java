@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
 
-    public List<Reservation> findReservationByAutomobileId(Integer automobile_id);
+    List<Reservation> findReservationByAutomobileId(Integer automobile_id);
 
 }

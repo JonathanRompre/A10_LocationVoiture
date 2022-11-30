@@ -11,13 +11,13 @@ import java.util.List;
 @Configuration
 public class ClientsConfig {
     @Bean
-    CommandLineRunner commandLineRunnerClient(ClientRepository clientRepository){
+    CommandLineRunner commandLineRunnerClient(ClientRepository clientRepository) {
         return args -> {
-            Client client1 = new Client("Dupont","Rémond","rdupont@aol.com");
-            Client client2 = new Client("Lamonde","Karen","klamonde@lamonde.com");
-            Client client3 = new Client("Divan","Yvan","dyvan@hotmail.com");
-            Client client4 = new Client("DesPlanches","Clément","clement.desplanches@gmail.fr");
-            Client client5 = new Client("Turloupitou","ititou","iloupitou@latoile.fr");
+            Client client1 = new Client("Dupont", "Rémond", "rdupont@aol.com");
+            Client client2 = new Client("Lamonde", "Karen", "klamonde@lamonde.com");
+            Client client3 = new Client("Divan", "Yvan", "dyvan@hotmail.com");
+            Client client4 = new Client("DesPlanches", "Clément", "clement.desplanches@gmail.fr");
+            Client client5 = new Client("Turloupitou", "ititou", "iloupitou@latoile.fr");
 
             clientRepository.saveAll(List.of(client1, client2, client3, client4, client5));
         };

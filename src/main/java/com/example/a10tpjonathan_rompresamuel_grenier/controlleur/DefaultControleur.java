@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class DefaultControleur {
 
     @GetMapping
-    public String accueilRedirect(){
+    public String accueilRedirect() {
         return "redirect:/automobile/";
     }
 }
