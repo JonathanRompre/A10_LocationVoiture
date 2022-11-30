@@ -1,6 +1,7 @@
 package com.example.a10tpjonathan_rompresamuel_grenier.service;
 
 import com.example.a10tpjonathan_rompresamuel_grenier.model.Automobile;
+import com.example.a10tpjonathan_rompresamuel_grenier.model.Filtres;
 import com.example.a10tpjonathan_rompresamuel_grenier.model.Reservation;
 import com.example.a10tpjonathan_rompresamuel_grenier.repository.AutomobilesRepository;
 import com.example.a10tpjonathan_rompresamuel_grenier.repository.ReservationRepository;
@@ -67,28 +68,82 @@ public class AutomobilesServices {
         return automobilesRepository.findById(id).get();
     }
 
-
     public void supprimerAutomobiles(Integer id) {
         if (automobilesRepository.existsById(id)) {
             automobilesRepository.deleteById(id);
         }
     }
 
-    public List<Automobile> listAll(String marque) {
-        this.queryTest(marque);
-        if (marque != null) {
-            return automobilesRepository.filterMarque(marque);
+    public List<String> getMarques() {
+        String query = "SELECT distinct p.marque from Automobile p";
+        List<String> tmpList = entityManager.createQuery(query).getResultList();
+
+        return tmpList;
+    }
+
+    public List<String> getMotopropulsion() {
+        String query = "SELECT distinct p.motopropulsion from Automobile p";
+        List<String> tmpList = entityManager.createQuery(query).getResultList();
+
+        return tmpList;
+    }
+
+    public List<String> getTransmission() {
+        String query = "SELECT distinct p.transmission from Automobile p";
+        List<String> tmpList = entityManager.createQuery(query).getResultList();
+
+        return tmpList;
+    }
+
+    public List<Automobile> filtrerAutomobiles(Filtres filtres) {
+        boolean isFirstFilter = true;
+        StringBuilder query = new StringBuilder("SELECT p from Automobile p ");
+
+        // Au moins 1 filtre utilisé.
+        if (filtres.isFilterUsed()) {
+            query.append("WHERE ");
+            if (!filtres.getSelectionMarque().isBlank()) {
+                if (isFirstFilter) {
+                    isFirstFilter = false;
+                } else {
+                    query.append("AND ");
+                }
+                query.append("p.marque LIKE '%");
+                query.append(filtres.getSelectionMarque());
+                query.append("%' ");
+            }
+            if (!filtres.getSelectionMotopropulsion().isBlank()) {
+                if (isFirstFilter) {
+                    isFirstFilter = false;
+                } else {
+                    query.append("AND ");
+                }
+                query.append("p.motopropulsion LIKE '%");
+                query.append(filtres.getSelectionMotopropulsion());
+                query.append("%' ");
+            }
+            if (!filtres.getSelectionTransmission().isBlank()) {
+                if (isFirstFilter) {
+                    isFirstFilter = false;
+                } else {
+                    query.append("AND ");
+                }
+                query.append("p.transmission LIKE '%");
+                query.append(filtres.getSelectionTransmission());
+                query.append("%' ");
+            }
+            // filtre prix max
+            if (filtres.getSelectionPrixMax() != null) {
+                if (isFirstFilter) {
+                    isFirstFilter = false;
+                } else {
+                    query.append("AND ");
+                }
+                query.append("p.prix < ");
+                query.append(filtres.getSelectionPrixMax());
+            }
         }
-        return automobilesRepository.findAll();
+        List<Automobile> tmpList = entityManager.createQuery(query.toString()).getResultList();
+        return tmpList;
     }
-
-    public List<Automobile> queryTest(String marque){
-        String query = "SELECT p FROM Automobile p WHERE p.marque LIKE '%"+marque+"%'";
-        List<Automobile> tmpList = entityManager.createQuery(query).getResultList();
-
-        System.out.println(tmpList);
-
-        return null;
-    }
-
 }

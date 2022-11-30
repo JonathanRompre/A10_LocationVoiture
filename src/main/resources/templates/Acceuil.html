@@ -4,7 +4,7 @@
 <head>
     <script type="text/javascript">
         function clearSearch() {
-            window.location = "[[@{/automobile/trier}]]";
+            window.location = "[[@{/automobile/}]]";
         }
     </script>
     <meta charset="UTF-8">
@@ -18,17 +18,41 @@
     <h1>Liste des voitures</h1>
     <a class="btn btn-primary btn-sm mb-3" th:href="@{/automobile/ajouterAutomobile}">Ajouter une voiture</a>
     <a class="btn btn-primary btn-sm mb-3" th:href="@{/automobile/louees}">Voitures louées</a>
-    <form th:action="@{/automobile/trier}">
-        Filter par marque: <input type="text" name="marque" id="marque" size="50" th:value="${marque}" required />
-        &nbsp;
-        <input type="submit" value="Recherché" />
-        &nbsp;
-        <input type="button" value="Effacer" id="btnClear" onclick="clearSearch()" />
+    <form th:action="@{/automobile/trier}" method="post">
+        <!-- Buffers pour garder valeurs -->
+        <input type="hidden" th:field="*{filtres.marque}"/>
+        <input type="hidden" th:field="*{filtres.motopropulsion}"/>
+        <input type="hidden" th:field="*{filtres.transmission}">
+        <!-- FILTRE MARQUE -->
+        Filter par marque:
+        &nbsp;<select th:field="*{filtres.selectionMarque}">
+            <option th:text="'---'" th:value="''"/>
+            <option th:each="marque: ${filtres.marque}" th:text="${marque}" th:value="${marque}"/>
+        </select><br>
+        <!-- FILTRE MOTOPROPULSION-->
+        Filtrer par motopropulsion:
+        <select th:field="*{filtres.selectionMotopropulsion}">
+            <option th:text="'---'" th:value="''"/>
+            <option th:each="motopropulsion: ${filtres.motopropulsion}" th:text="${motopropulsion}" th:value="${motopropulsion}"/>
+        </select><br>
+        <!-- FILTRE TRANSMISSION-->
+        Filtrer par transmission
+        <select th:field="*{filtres.selectionTransmission}">
+            <option th:text="'---'" th:value="''"/>
+            <option th:each="transmission: ${filtres.transmission}" th:text="${transmission}" th:value="${transmission}"/>
+        </select><br>
+        <!-- FILTRE PRIX MAXIMUM -->
+        Filtrer par prix mensuel maximum:
+        <input type="number" th:field="*{filtres.selectionPrixMax}" th:value="${filtres.selectionPrixMax}" min="0" max="1500" step="1" value>
+        <br>
+            <!-- SUBMIT -->
+        <input type="submit" value="Recherché"/>
+        <input type="button" value="Effacer" id="btnClear" onclick="clearSearch()"/>
     </form>
     <br>
     <table align="center" border="1" class="table table-striped table-responsive-md"
            style="width:80%">
-        <thread >
+        <thread>
             <tr align="center">
                 <th>Année</th>
                 <th>Marque</th>
@@ -50,7 +74,8 @@
             <td th:text="${automobile.getLicence()}"></td>
             <td th:text="${automobile.getPrix()}"></td>
             <td align="center">
-                <a class="btn btn-primary" th:href="@{/automobile/detailsAutomobile/{id}(id=${automobile.id})}">Details</a>
+                <a class="btn btn-primary"
+                   th:href="@{/automobile/detailsAutomobile/{id}(id=${automobile.id})}">Details</a>
                 <a class="btn btn-primary" th:href="@{'/client/?autoId='+${automobile.id}}">Louer</a>
             </td>
         </tr>
