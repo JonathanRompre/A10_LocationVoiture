@@ -1,7 +1,6 @@
 package com.example.a10tpjonathan_rompresamuel_grenier.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.util.Date;
 

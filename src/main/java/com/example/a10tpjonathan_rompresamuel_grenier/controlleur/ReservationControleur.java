@@ -24,25 +24,25 @@ public class ReservationControleur {
     @Autowired
     private AutomobilesServices automobilesServices;
 
-    public ReservationControleur(ReservationsServices reservationsServices, ClientsServices clientsServices, AutomobilesServices automobilesServices){
+    public ReservationControleur(ReservationsServices reservationsServices, ClientsServices clientsServices, AutomobilesServices automobilesServices) {
         this.reservationsServices = reservationsServices;
         this.automobilesServices = automobilesServices;
         this.clientsServices = clientsServices;
     }
 
     @GetMapping
-    public String nouvelleReservation(@RequestParam(required = false) Integer autoId, @RequestParam(required = false) Integer clientId, Model model){
+    public String nouvelleReservation(@RequestParam(required = false) Integer autoId, @RequestParam(required = false) Integer clientId, Model model) {
         Client client = null;
         Automobile auto = null;
-        if(clientId != null){
+        if (clientId != null) {
             client = clientsServices.trouverClient(clientId);
         }
-        if(autoId != null){
+        if (autoId != null) {
             auto = automobilesServices.trouverAutomobile(autoId);
         }
-        model.addAttribute("client",client);
-        model.addAttribute("auto",auto);
-        model.addAttribute("datePossession","");
+        model.addAttribute("client", client);
+        model.addAttribute("auto", auto);
+        model.addAttribute("datePossession", "");
         Reservation newReservation = new Reservation();
         newReservation.setClient(client);
         newReservation.setAutomobileId(auto.getId());
@@ -54,11 +54,10 @@ public class ReservationControleur {
     }
 
     @PostMapping("/confirm")
-    public String confirmationReservation(@ModelAttribute("reservation") Reservation reservation){
+    public String confirmationReservation(@ModelAttribute("reservation") Reservation reservation) {
         reservationsServices.ajouterReservation(reservation);
         return "redirect:/";
     }
-
 
 
 }

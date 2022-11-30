@@ -4,8 +4,6 @@ import com.example.a10tpjonathan_rompresamuel_grenier.model.Automobile;
 import com.example.a10tpjonathan_rompresamuel_grenier.model.Filtres;
 import com.example.a10tpjonathan_rompresamuel_grenier.service.AutomobilesServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.error.ErrorController;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +15,13 @@ import java.util.List;
 public class AutomobilesControleur {
     @Autowired
     private AutomobilesServices automobilesServices;
+
     @PostMapping("/trier")
-    //public String filtrerPageAcceuilParMarque(Model model, @Param("marque") String marque) {
     public String filtrerPageAcceuilParMarque(Model model, @ModelAttribute("filtres") Filtres filtres) {
         List<Automobile> listAutomobiles = automobilesServices.filtrerAutomobiles(filtres);
         model.addAttribute("listAutomobiles", listAutomobiles);
         model.addAttribute("marque", filtres.getSelectionMarque());
-        model.addAttribute("filtres",filtres);
+        model.addAttribute("filtres", filtres);
 
         return "Acceuil";
     }
@@ -43,12 +41,12 @@ public class AutomobilesControleur {
         filtres.setTransmission(automobilesServices.getTransmission());
         filtres.setMotopropulsion(automobilesServices.getMotopropulsion());
         filtres.setMarque(automobilesServices.getMarques());
-        model.addAttribute("filtres",filtres);
+        model.addAttribute("filtres", filtres);
         return "Acceuil";
     }
 
     @GetMapping("/louees")
-    public String affichageAccueilLouees(Model model){
+    public String affichageAccueilLouees(Model model) {
         List<Automobile> listAutomobiles = automobilesServices.listerAutomobilesLouees();
         model.addAttribute("automobile", new Automobile());
         model.addAttribute("listAutomobiles", listAutomobiles);

@@ -11,7 +11,7 @@ import java.util.List;
 @Configuration
 public class AutomobilesConfig {
     @Bean
-    CommandLineRunner commandLineRunner(AutomobilesRepository automobilesRepository) {
+    CommandLineRunner commandLineRunnerAutomobiles(AutomobilesRepository automobilesRepository) {
         return args -> {
 
             Automobile automobile1 = new Automobile(2022, "Mazda", "CX-30", "Traction", "Automatique", "F156M68", 522.39);

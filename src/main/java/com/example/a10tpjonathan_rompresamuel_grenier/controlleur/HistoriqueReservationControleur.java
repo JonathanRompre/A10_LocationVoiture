@@ -20,13 +20,13 @@ public class HistoriqueReservationControleur {
     private ReservationsServices reservationsServices;
 
 
-    public HistoriqueReservationControleur(HistoriqueReservationsServices historiqueReservationsServices, ReservationsServices reservationsServices){
+    public HistoriqueReservationControleur(HistoriqueReservationsServices historiqueReservationsServices, ReservationsServices reservationsServices) {
         this.historiqueReservationsServices = historiqueReservationsServices;
         this.reservationsServices = reservationsServices;
     }
 
     @GetMapping
-    public String effectuerRetourVoiture(@RequestParam int autoId, Model model){
+    public String effectuerRetourVoiture(@RequestParam int autoId, Model model) {
 
         Reservation tmpReservation = reservationsServices.findReservationByAutoId(autoId);
         historiqueReservationsServices.ajouterHistoriqueReservation(tmpReservation);
