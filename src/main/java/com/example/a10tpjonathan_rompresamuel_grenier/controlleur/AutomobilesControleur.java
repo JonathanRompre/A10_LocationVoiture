@@ -30,7 +30,7 @@ public class AutomobilesControleur {
         this.automobilesServices = automobilesServices;
     }
 
-    @GetMapping("/")
+    @GetMapping({"/",""})
     public String affichageAcceuil(Model model) {
 
         List<Automobile> listAutomobiles = automobilesServices.listerAutomobilesDispo();
