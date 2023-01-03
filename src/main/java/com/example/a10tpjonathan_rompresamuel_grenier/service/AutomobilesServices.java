@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -27,18 +28,16 @@ public class AutomobilesServices {
     public List<Automobile> listerAutomobilesDispo() {
         List<Automobile> listAuto = automobilesRepository.findAll();
         List<Reservation> listReservation = reservationRepository.findAll();
-        if (!listReservation.isEmpty()) {
-            for (int i = 0; i < listAuto.size(); i++) {
-                for (Reservation r : listReservation) {
-                    if (listAuto.get(i).getId() == r.getAutomobileId()) {
-                        listAuto.remove(i);
-                    }
+        Iterator<Automobile> iAuto = listAuto.iterator();
+        while(iAuto.hasNext()){
+            Automobile tmpAuto = iAuto.next();
+            for(Reservation r:listReservation){
+                if(tmpAuto.getId().equals(r.getAutomobileId())){
+                    iAuto.remove();
                 }
             }
-            return listAuto;
-        } else {
-            return listAuto;
         }
+        return listAuto;
     }
 
     public List<Automobile> listerAutomobilesLouees() {
@@ -89,51 +88,31 @@ public class AutomobilesServices {
     }
 
     public List<Automobile> filtrerAutomobiles(Filtres filtres) {
-        boolean isFirstFilter = true;
-        StringBuilder query = new StringBuilder("SELECT p from Automobile p ");
+        StringBuilder query = new StringBuilder("SELECT p FROM Automobile p WHERE " +
+                "p.id NOT IN (SELECT r.automobileId FROM Reservation r) ");
 
         // Au moins 1 filtre utilisé.
         if (filtres.isFilterUsed()) {
-            query.append("WHERE ");
             if (!filtres.getSelectionMarque().isBlank()) {
-                if (isFirstFilter) {
-                    isFirstFilter = false;
-                } else {
-                    query.append("AND ");
-                }
-                query.append("p.marque LIKE '%");
+                query.append("AND p.marque LIKE '%");
                 query.append(filtres.getSelectionMarque());
                 query.append("%' ");
             }
             if (!filtres.getSelectionMotopropulsion().isBlank()) {
-                if (isFirstFilter) {
-                    isFirstFilter = false;
-                } else {
-                    query.append("AND ");
-                }
-                query.append("p.motopropulsion LIKE '%");
+                query.append("AND p.motopropulsion LIKE '%");
                 query.append(filtres.getSelectionMotopropulsion());
                 query.append("%' ");
             }
             if (!filtres.getSelectionTransmission().isBlank()) {
-                if (isFirstFilter) {
-                    isFirstFilter = false;
-                } else {
-                    query.append("AND ");
-                }
-                query.append("p.transmission LIKE '%");
+                query.append("AND p.transmission LIKE '%");
                 query.append(filtres.getSelectionTransmission());
                 query.append("%' ");
             }
             // filtre prix max
             if (filtres.getSelectionPrixMax() != null) {
-                if (isFirstFilter) {
-                    isFirstFilter = false;
-                } else {
-                    query.append("AND ");
-                }
-                query.append("p.prix < ");
+                query.append("AND p.prix < ");
                 query.append(filtres.getSelectionPrixMax());
+                query.append(" ");
             }
         }
         List<Automobile> tmpList = entityManager.createQuery(query.toString()).getResultList();
